@@ -1,5 +1,4 @@
-﻿exit
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Application.Interfaces;
 using Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
