@@ -10,6 +10,7 @@ public class CustomersResponse
     public string Document { get; protected set; } = string.Empty;
     public string? Email { get; protected set; }
     public string? Phone { get; protected set; }
+    public int Equipaments { get; protected set; }
 
     public string? Address { get; protected set; }
     public string? State { get; protected set; }

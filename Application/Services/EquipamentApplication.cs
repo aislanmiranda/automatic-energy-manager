@@ -44,10 +44,27 @@ public class EquipamentApplication : IEquipamentApplication
     {
         try
         {
-
             var existingEntity = await _equipRepository.GetEquipamentById(request.Id, cancellationToken);
 
             _mapper.Map(request, existingEntity);
+
+            var responseDomain = await _equipRepository.UpdateAsync(existingEntity, cancellationToken);
+            var responseResult = _mapper.Map<EquipamentResponse>(responseDomain);
+
+            return Result<EquipamentResponse>.Create(responseResult);
+        }
+        catch (Exception ex)
+        {
+            return Result<EquipamentResponse>.Fail("Erro ao atualizar equipamento");
+        }
+    }
+
+    public async Task<Result<EquipamentResponse>> DeleteEquipament(Guid id,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var existingEntity = await _equipRepository.GetEquipamentById(id, cancellationToken);
 
             var responseDomain = await _equipRepository.UpdateAsync(existingEntity, cancellationToken);
             var responseResult = _mapper.Map<EquipamentResponse>(responseDomain);

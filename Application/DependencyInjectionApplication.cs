@@ -21,9 +21,9 @@ public static class DependencyInjectionApplication
         string HasSSL = Environment.GetEnvironmentVariable("HFHOSTSSL")!;
 
         string prefix = HasSSL.Equals("false") ? "http" : "https";
-        #if DEBUG
-        HangFireConn = configuration.GetConnectionString("HangFireConn")!;
-        #endif
+        //#if DEBUG
+        //HangFireConn = configuration.GetConnectionString("HangFireConn")!;
+        //#endif
         services.AddRefitClient<IHangFireApplication>()
             .ConfigureHttpClient(c => c.BaseAddress = new Uri($"{prefix}://{HangFireConn}"));
     }

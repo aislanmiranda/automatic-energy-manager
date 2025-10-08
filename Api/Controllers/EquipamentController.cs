@@ -39,6 +39,18 @@ public class EquipamentController : ControllerBase
         return StatusCode(result.StatusCode, new { data = result.Data });
     }
 
+    //[HttpDelete("Delete")]
+    //public async Task<IActionResult> DeleteEquipament([FromQuery] int id,
+    //    CancellationToken cancellationToken)
+    //{
+    //    var result = await _application.UpdateEquipament(request, cancellationToken);
+
+    //    if (!result.Success)
+    //        return StatusCode(result.StatusCode, new { error = result.Error });
+
+    //    return StatusCode(result.StatusCode, new { data = result.Data });
+    //}
+
     [HttpGet("ListByCustomer")]
     public async Task<IActionResult> ListByCustomerId([FromQuery] Guid customerId,
         CancellationToken cancellationToken)

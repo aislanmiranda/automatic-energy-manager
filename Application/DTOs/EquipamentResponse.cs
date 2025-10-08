@@ -3,6 +3,8 @@
 public class EquipamentResponse: EquipamentCreateRequest
 {
     public Guid Id { get; set; }
+    public int OnOff { get; set; }
+
     public List<TaskEquipamentResponse>? Tasks { get; set; }
 }
 

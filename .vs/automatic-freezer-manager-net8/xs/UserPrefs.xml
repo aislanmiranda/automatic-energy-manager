@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{52B84D51-8790-4CE1-BC6A-4CF60066CBB9}|https">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/Data/AppDbContext.cs">
+    <Files>
+      <File FileName="Infrastructure/Data/EntityConfig/EquipamentEntityConfig.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure/Data/EntityConfig/CustomerEntityConfig.cs" Line="103" Column="1" />
+      <File FileName="Infrastructure/Data/EntityConfig/TaskEntityConfig.cs" Line="46" Column="1" />
+      <File FileName="Infrastructure/Data/EntityConfig/UserCustomerEntityConfig.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure/Data/EntityConfig/UserEntityConfig.cs" Line="54" Column="74" />
+      <File FileName="Infrastructure/Data/AppDbContext.cs" Line="13" Column="48" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="automatic-freezer-manager-net8">
+            <Node name="Api">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+            <Node name="Application">
+              <Node name="DTOs" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+            <Node name="Infrastructure">
+              <Node name="Data" expanded="True">
+                <Node name="AppDbContext.cs" selected="True" />
+              </Node>
+              <Node name="Repositories" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

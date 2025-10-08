@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251006050932_UpdateEquipament")]
+    partial class UpdateEquipament
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,19 +35,22 @@ namespace Infrastructure.Migrations
                         .HasComment("Chave para o cliente");
 
                     b.Property<string>("Address")
-                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar")
                         .HasColumnName("Address")
                         .HasColumnOrder(6)
                         .HasComment("Logradouro para localização o cliente");
 
                     b.Property<string>("City")
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
                         .HasColumnName("City")
                         .HasColumnOrder(8)
                         .HasComment("Cidade para localização o cliente");
 
                     b.Property<string>("Complement")
-                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
                         .HasColumnName("Complement")
                         .HasColumnOrder(10)
                         .HasComment("Complemento para localização o cliente");
@@ -58,39 +64,45 @@ namespace Infrastructure.Migrations
                         .HasComment("Data de criação no fuso horário do Brasil");
 
                     b.Property<string>("Document")
-                        .HasColumnType("varchar(18)")
+                        .IsRequired()
+                        .HasMaxLength(18)
+                        .HasColumnType("varchar")
                         .HasColumnName("Document")
                         .HasColumnOrder(3)
                         .HasComment("Documento para identificar o cliente 000.000.000-00 | 00.000.000/0000-00");
 
                     b.Property<string>("Email")
-                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
                         .HasColumnName("Email")
                         .HasColumnOrder(4)
                         .HasComment("Email para identificar o cliente");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
                         .HasColumnName("Name")
                         .HasColumnOrder(2)
                         .HasComment("Nome para identificar o cliente");
 
                     b.Property<string>("Neighborhood")
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
                         .HasColumnName("Neighborhood")
                         .HasColumnOrder(9)
                         .HasComment("Bairro para localização o cliente");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("varchar(15)")
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar")
                         .HasColumnName("Phone")
                         .HasColumnOrder(5)
                         .HasComment("Phone para identificar o cliente (00) 99999-9999 | (00) 9999-9999");
 
                     b.Property<string>("State")
-                        .HasColumnType("varchar(2)")
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar")
                         .HasColumnName("Estado")
                         .HasColumnOrder(7)
                         .HasComment("Estado para localização o cliente");
@@ -100,13 +112,15 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("TypeCustomer")
                         .IsRequired()
-                        .HasColumnType("varchar(2)")
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar")
                         .HasColumnName("TypeCustomer")
                         .HasColumnOrder(1)
                         .HasComment("Tipo do Usuário [PJ|PF]");
 
                     b.Property<string>("ZipCode")
-                        .HasColumnType("varchar(9)")
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar")
                         .HasColumnName("ZipCode")
                         .HasColumnOrder(11)
                         .HasComment("Cep para localização o cliente 29000-000");
@@ -131,6 +145,7 @@ namespace Infrastructure.Migrations
                         .HasComment("Id do equipamento");
 
                     b.Property<short>("Active")
+                        .HasMaxLength(1)
                         .HasColumnType("smallint")
                         .HasColumnName("Active")
                         .HasColumnOrder(5)
@@ -140,12 +155,14 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<short>("OnOff")
+                        .HasMaxLength(1)
                         .HasColumnType("smallint")
                         .HasColumnName("OnOff")
                         .HasColumnOrder(4)
                         .HasComment("Para indicar se o equipamento está ligado ou desligado");
 
                     b.Property<short>("Port")
+                        .HasMaxLength(2)
                         .HasColumnType("smallint")
                         .HasColumnName("Port")
                         .HasColumnOrder(3)
@@ -153,14 +170,16 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Queue")
                         .IsRequired()
-                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar")
                         .HasColumnName("Queue")
                         .HasColumnOrder(2)
                         .HasComment("Indica a fila que o equipamento escuta");
 
                     b.Property<string>("Tag")
                         .IsRequired()
-                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar")
                         .HasColumnName("Tag")
                         .HasColumnOrder(1)
                         .HasComment("Tag para identificar do equipamento");
@@ -191,7 +210,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Action")
                         .IsRequired()
-                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar")
                         .HasColumnName("Action")
                         .HasColumnOrder(2)
                         .HasComment("Ação para identificar comportamento da placa");
@@ -201,16 +221,18 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Expression")
                         .IsRequired()
-                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar")
                         .HasColumnName("Expression")
-                        .HasColumnOrder(3)
+                        .HasColumnOrder(4)
                         .HasComment("Expressão cron para a programação");
 
                     b.Property<string>("TaskJobId")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
                         .HasColumnName("TaskJobId")
-                        .HasColumnOrder(4)
+                        .HasColumnOrder(5)
                         .HasComment("Identificação da task cadastrada");
 
                     b.Property<string>("TaskLegend")
@@ -219,7 +241,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("TaskName")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
                         .HasColumnName("TaskName")
                         .HasColumnOrder(1)
                         .HasComment("Nome para identificar nome tarefa");
@@ -255,21 +278,24 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar")
                         .HasColumnName("Description")
                         .HasColumnOrder(3)
                         .HasComment("Description para identificar o usuário");
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar")
                         .HasColumnName("Login")
                         .HasColumnOrder(1)
                         .HasComment("Login para identificar o usuário");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varchar(6)")
+                        .HasMaxLength(6)
+                        .HasColumnType("varchar")
                         .HasColumnName("Password")
                         .HasColumnOrder(2)
                         .HasComment("Password para altenticar o usuário");

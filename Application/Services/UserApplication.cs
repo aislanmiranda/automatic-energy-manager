@@ -42,7 +42,7 @@ public class UserApplication : IUserApplication
             var identity = new ClaimsIdentity(new[]
             {
                 //TODO: setar informacao relevante aqui
-                //new Claim(ClaimTypes.NameIdentifier, user?.UserCustomer?.Customer?.AliasCustomer ?? "admin"),
+                new Claim(ClaimTypes.NameIdentifier, user?.UserCustomer?.Customer?.Email ?? ""),
                 new Claim(ClaimTypes.Name, user?.UserCustomer?.Customer?.Name ?? "Administrador"),
                 new Claim(ClaimTypes.Role, user?.UserCustomer?.Customer?.TypeCustomer.Length > 0 ? "C" : "A"),
                 new Claim(ClaimTypes.Sid, user?.UserCustomer?.Customer?.Id.ToString()  ?? "")

@@ -27,7 +27,6 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("ping")]
-    [Authorize]
     public IActionResult GetCurrentUser()
     {
         return Ok(new

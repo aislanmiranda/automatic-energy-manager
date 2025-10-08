@@ -10,6 +10,8 @@ namespace Application.Mappers
 		{
             CreateMap<CreateCustomerRequest, Customer>();
             CreateMap<Customer, CustomersResponse>()
+                .ForMember(dest => dest.Equipaments, src
+                    => src.MapFrom(src => src.Equipaments!.Count()))
                 .ForMember(dest => dest.Status, src
                     => src.MapFrom(src => DefinitionStatus(src.UserCustomer!.User.Status)));
 

@@ -5,7 +5,6 @@ using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 
 namespace Application.Services;
 
@@ -137,11 +136,34 @@ public class TaskApplication : ITaskApplication
                     }
                 });
 
-            return Result<FreezerOnOffResponse>.Ok(new FreezerOnOffResponse { Success = true }); ;
+            var state = await UpdateStateFreezer(equipament, request.Action, cancellationToken);
+
+            return Result<FreezerOnOffResponse>.Ok(new FreezerOnOffResponse { Success = true, State = state }); ;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            Console.WriteLine($"### ERROR: {ex.Message}");
             return Result<FreezerOnOffResponse>.Fail($"Erro ao enviar sinal {request.Action} para o freezer");
+        }
+    }
+
+    private async Task<int?> UpdateStateFreezer(Equipament entity, string action, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var update = _mapper.Map<UpdateStateEquipamentRequest>(entity);
+            update.OnOff = action == "ON" ? 1 : 0;
+
+            var stateUpdated = _mapper.Map(update, entity);
+
+            await _equipamentRepository.UpdateAsync(stateUpdated, cancellationToken);
+
+            return update.OnOff;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"### ERROR: {ex.Message}");
+            return null;
         }
     }
 }

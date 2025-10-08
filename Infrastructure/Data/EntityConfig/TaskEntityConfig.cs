@@ -19,33 +19,30 @@ namespace Infrastructure.Data.EntityConfig
                 .Property(p => p.TaskName)
                 .HasColumnOrder(1)
                 .HasColumnName("TaskName")
-                .HasColumnType("varchar")
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasComment("Nome para identificar nome tarefa");
+                .HasColumnType("varchar(50)")
+                .HasComment("Nome para identificar nome tarefa")
+                .IsRequired();
             builder
                 .Property(p => p.Action)
                 .HasColumnOrder(2)
                 .HasColumnName("Action")
-                .HasColumnType("varchar")
-                .IsRequired()
-                .HasMaxLength(10)
-                .HasComment("Ação para identificar comportamento da placa");
+                .HasColumnType("varchar(10)")
+                .HasComment("Ação para identificar comportamento da placa")
+                .IsRequired();
             builder
                 .Property(p => p.Expression)
-                .HasColumnOrder(4)
+                .HasColumnOrder(3)
                 .HasColumnName("Expression")
-                .HasColumnType("varchar") //00 20 * * 5
-                .IsRequired()
-                .HasMaxLength(30)
-                .HasComment("Expressão cron para a programação");
+                .HasColumnType("varchar(30)") //00 20 * * 5
+                .HasComment("Expressão cron para a programação")
+                .IsRequired();
             builder
                 .Property(p => p.TaskJobId)
-                .HasColumnOrder(5)
+                .HasColumnOrder(4)
                 .HasColumnName("TaskJobId")
-                .HasColumnType("varchar")
-                .HasMaxLength(50)
-                .HasComment("Identificação da task cadastrada");
+                .HasColumnType("varchar(50)")
+                .HasComment("Identificação da task cadastrada")
+                .IsRequired();
 
             builder
                  .HasOne(p => p.Equipament)

@@ -8,9 +8,16 @@ namespace Application.Mappers
 	{
 		public EquipamentMap()
 		{
-            CreateMap<EquipamentCreateRequest, Equipament>();
+            CreateMap<EquipamentCreateRequest, Equipament>()
+                .ForMember(dest => dest.OnOff, src => src.MapFrom(src => 1))
+                .ForMember(dest => dest.Active, src => src.MapFrom(src => 1));
+
             CreateMap<EquipamentUpdateRequest, Equipament>();
-            CreateMap<Equipament, EquipamentResponse>();
+            CreateMap<UpdateStateEquipamentRequest, Equipament>()
+                .ReverseMap();
+
+            CreateMap<Equipament, EquipamentResponse>()
+                .ForMember(dest => dest.OnOff, src => src.MapFrom(src => src.OnOff));
         }
 	}
 }

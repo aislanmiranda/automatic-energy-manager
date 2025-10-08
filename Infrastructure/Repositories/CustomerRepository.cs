@@ -62,6 +62,7 @@ namespace Infrastructure.Repositories
             var list = await _context
                                 .Set<Customer>()
                                 .Include(c => c.UserCustomer!.User)
+                                .Include(c => c.Equipaments)
                                 .ToListAsync(cancellationToken);
             return list;
         }

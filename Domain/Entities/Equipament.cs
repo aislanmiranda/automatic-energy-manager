@@ -10,5 +10,8 @@ public class Equipament
     public Guid CustomerId { get; protected set; }
     public Customer? Customer { get; protected set; }
 
+    public int OnOff { get; protected set; }
+    public int Active { get; protected set; }
+
     public List<ScheduleTask>? Tasks { get; protected set; }
 }
