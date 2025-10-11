@@ -40,7 +40,7 @@ namespace Infrastructure.Data.EntityConfig
                 .Property(p => p.TaskJobId)
                 .HasColumnOrder(4)
                 .HasColumnName("TaskJobId")
-                .HasColumnType("varchar(50)")
+                .HasColumnType("varchar(80)")
                 .HasComment("Identificação da task cadastrada")
                 .IsRequired();
 

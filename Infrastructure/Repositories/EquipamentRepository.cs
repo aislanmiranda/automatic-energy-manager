@@ -54,6 +54,19 @@ namespace Infrastructure.Repositories
                                 .FirstOrDefaultAsync(cancellationToken);
             return equipament!;
         }
+
+        public async Task<Equipament> DeleteEquipamentAsync(Guid equipamentId, CancellationToken cancellationToken)
+        {
+            var entity = await _context
+                .Set<Equipament>()
+                .FirstOrDefaultAsync(p => p.Id == equipamentId, cancellationToken) ?? throw new Exception("Entity not found");
+
+            _context.Remove(entity);
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return entity;
+        }
     }
 }
 

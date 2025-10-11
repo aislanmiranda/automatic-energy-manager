@@ -10,14 +10,18 @@ namespace Application.Services;
 public class EquipamentApplication : IEquipamentApplication
 {
     private readonly IEquipamentRepository _equipRepository;
+    private readonly ITaskRepository _taskRepository;
+    private readonly IHangFireApplication _hangRepository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IMapper _mapper;
 
-    public EquipamentApplication(IEquipamentRepository equipRepository,
-        IHttpContextAccessor httpContextAccessor,
+    public EquipamentApplication(IEquipamentRepository equipRepository, ITaskRepository taskRepository,
+        IHangFireApplication hangRepository, IHttpContextAccessor httpContextAccessor,
         IMapper mapper)
     {
         _equipRepository = equipRepository;
+        _taskRepository = taskRepository;
+        _hangRepository = hangRepository;
         _httpContextAccessor = httpContextAccessor;
         _mapper = mapper;
     }
@@ -65,15 +69,26 @@ public class EquipamentApplication : IEquipamentApplication
         try
         {
             var existingEntity = await _equipRepository.GetEquipamentById(id, cancellationToken);
+            
+            //remove as tasks no hangfire
+            var tasks = await _taskRepository.GetAll(existingEntity.Id, cancellationToken);            
+            foreach (var task in tasks!)
+                await _hangRepository.DeleteTaskAsync(task.TaskJobId);
 
-            var responseDomain = await _equipRepository.UpdateAsync(existingEntity, cancellationToken);
+            //remove as tasks
+            foreach (var task in tasks!)
+                await _taskRepository.DeleteByTaskIdAsync(task.TaskJobId, task.EquipamentId, cancellationToken);
+
+            //inativa o equipamento
+            var responseDomain = await _equipRepository.DeleteEquipamentAsync(existingEntity.Id, cancellationToken);
+
             var responseResult = _mapper.Map<EquipamentResponse>(responseDomain);
 
-            return Result<EquipamentResponse>.Create(responseResult);
+            return Result<EquipamentResponse>.Ok(responseResult);
         }
         catch (Exception ex)
         {
-            return Result<EquipamentResponse>.Fail("Erro ao atualizar equipamento");
+            return Result<EquipamentResponse>.Fail("Erro ao deletar equipamento");
         }
     }
 

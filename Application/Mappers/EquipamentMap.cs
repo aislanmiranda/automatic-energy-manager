@@ -15,6 +15,7 @@ namespace Application.Mappers
             CreateMap<EquipamentUpdateRequest, Equipament>();
             CreateMap<UpdateStateEquipamentRequest, Equipament>()
                 .ReverseMap();
+            CreateMap<EquipamentDeleteRequest, Equipament>();
 
             CreateMap<Equipament, EquipamentResponse>()
                 .ForMember(dest => dest.OnOff, src => src.MapFrom(src => src.OnOff));

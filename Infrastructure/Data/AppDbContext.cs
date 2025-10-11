@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-    // dotnet ef migrations add UpdateSizeFields --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
+    // dotnet ef migrations add UpdateFieldTaskTable --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
     // dotnet ef database update --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
     // dotnet ef migrations remove --force --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
 
@@ -22,13 +22,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserCustomerEntityConfig).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(CustomerEntityConfig).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(EquipamentEntityConfig).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(TaskEntityConfig).Assembly);
-
         base.OnModelCreating(modelBuilder);
-        //modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
     }
 }

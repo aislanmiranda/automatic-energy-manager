@@ -15,4 +15,7 @@ public interface IEquipamentRepository
 
     Task<Equipament> GetEquipamentById(Guid equipamentId,
             CancellationToken cancellationToken);
+
+    Task<Equipament> DeleteEquipamentAsync(Guid equipamentId,
+        CancellationToken cancellationToken);
 }
