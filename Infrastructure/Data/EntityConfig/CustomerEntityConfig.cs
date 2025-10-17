@@ -55,46 +55,53 @@ namespace Infrastructure.Data.EntityConfig
                 .HasColumnOrder(6)
                 .HasColumnName("Address")
                 .HasColumnType("varchar(200)")
-                .HasComment("Logradouro para localização o cliente")
+                .HasComment("Logradouro para localização do cliente")
                 .IsRequired(false);
             builder
-                .Property(p => p.State)
+                .Property(p => p.Number)
                 .HasColumnOrder(7)
+                .HasColumnName("Number")
+                .HasColumnType("varchar(10)")
+                .HasComment("Número para localização do cliente")
+                .IsRequired(true);
+            builder
+                .Property(p => p.State)
+                .HasColumnOrder(8)
                 .HasColumnName("Estado")
                 .HasColumnType("varchar(2)")
                 .HasComment("Estado para localização o cliente")
                 .IsRequired(false);
             builder
                 .Property(p => p.City)
-                .HasColumnOrder(8)
+                .HasColumnOrder(9)
                 .HasColumnName("City")
                 .HasColumnType("varchar(50)")
                 .HasComment("Cidade para localização o cliente")
                 .IsRequired(false);
             builder
                 .Property(p => p.Neighborhood)
-                .HasColumnOrder(9)
+                .HasColumnOrder(10)
                 .HasColumnName("Neighborhood")
                 .HasColumnType("varchar(50)")
                 .HasComment("Bairro para localização o cliente")
                 .IsRequired(false);
             builder
                 .Property(p => p.Complement)
-                .HasColumnOrder(10)
+                .HasColumnOrder(11)
                 .HasColumnName("Complement")
                 .HasColumnType("varchar(100)")
                 .HasComment("Complemento para localização o cliente")
                 .IsRequired(false);
             builder
                 .Property(p => p.ZipCode)
-                .HasColumnOrder(11)
+                .HasColumnOrder(12)
                 .HasColumnName("ZipCode")
                 .HasColumnType("varchar(9)")
                 .HasComment("Cep para localização o cliente 29000-000")
-                .IsRequired(false);
+                .IsRequired(true);
             builder
                 .Property(p => p.Created)
-                .HasColumnOrder(14)
+                .HasColumnOrder(13)
                 .HasColumnName("CreatedAt")
                 .HasColumnType("timestamptz") // timestamp with time zone
                 .HasDefaultValueSql("CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'")

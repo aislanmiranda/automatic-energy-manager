@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-    // dotnet ef migrations add UpdateFieldTaskTable --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
+    // dotnet ef migrations add UpdateFieldsCustomer --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
     // dotnet ef database update --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
     // dotnet ef migrations remove --force --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
 

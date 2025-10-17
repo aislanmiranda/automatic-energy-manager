@@ -13,6 +13,7 @@ public class CustomersResponse
     public int Equipaments { get; protected set; }
 
     public string? Address { get; protected set; }
+    public string Number { get; protected set; } = string.Empty;
     public string? State { get; protected set; }
     public string? City { get; protected set; }
     public string? Neighborhood { get; protected set; }

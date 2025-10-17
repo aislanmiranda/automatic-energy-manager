@@ -1,13 +1,5 @@
 ﻿<Properties StartupConfiguration="{52B84D51-8790-4CE1-BC6A-4CF60066CBB9}|https">
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/aislanmiranda/Projects/automatic-energy/automatic-energy-manager/Api/Controllers/EquipamentController.cs" relfile="Api/Controllers/EquipamentController.cs" line="22" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Application/Services/EquipamentApplication.cs">
     <Files>
       <File FileName="Infrastructure/Data/EntityConfig/EquipamentEntityConfig.cs" />
@@ -15,52 +7,53 @@
       <File FileName="Infrastructure/Data/EntityConfig/TaskEntityConfig.cs" />
       <File FileName="Infrastructure/Data/EntityConfig/UserCustomerEntityConfig.cs" />
       <File FileName="Infrastructure/Data/EntityConfig/UserEntityConfig.cs" />
-      <File FileName="Infrastructure/Data/AppDbContext.cs" Line="28" Column="91" />
-      <File FileName="Application/Services/CustomerApplication.cs" Line="88" Column="1" />
-      <File FileName="Infrastructure/Repositories/CustomerRepository.cs" Line="65" Column="60" />
-      <File FileName="Application/Mappers/CustomerMap.cs" Line="14" Column="59" />
-      <File FileName="Application/DTOs/CustomersResponse.cs" Line="13" Column="27" />
-      <File FileName="Api/Properties/launchSettings.json" Line="41" Column="20" />
-      <File FileName="Api/appsettings.Development.json" Line="1" Column="1" />
-      <File FileName="Infrastructure/Data/AppDbContextFactory.cs" Line="20" Column="50" />
-      <File FileName="Infrastructure/Data/DbInitializer.cs" Line="1" Column="1" />
-      <File FileName="Infrastructure/DependencyInjectionInfra.cs" Line="22" Column="25" />
-      <File FileName="Api/Program.cs" Line="1" Column="1" />
-      <File FileName="Application/DependencyInjectionApplication.cs" Line="28" Column="1" />
-      <File FileName="Api/Controllers/CustomerController.cs" Line="1" Column="1" />
-      <File FileName="Api/Controllers/EquipamentController.cs" Line="22" Column="1" />
-      <File FileName="Application/Services/EquipamentApplication.cs" Line="33" Column="1" />
-      <File FileName="Application/Mappers/EquipamentMap.cs" Line="17" Column="30" />
-      <File FileName="Application/DTOs/EquipamentResponse.cs" Line="6" Column="21" />
-      <File FileName="Application/DTOs/EquipamentCreateRequest.cs" Line="10" Column="2" />
-      <File FileName="Api/Controllers/TaskController.cs" Line="54" Column="46" />
-      <File FileName="Application/Services/TaskApplication.cs" Line="159" Column="1" />
-      <File FileName="Infrastructure/Repositories/EquipamentRepository.cs" Line="56" Column="1" />
-      <File FileName="Application/Interfaces/IHangFireApplication.cs" Line="12" Column="18" />
-      <File FileName="Domain/Entities/Equipament.cs" Line="3" Column="14" />
-      <File FileName="Application/DTOs/EquipamentCreateRequest (copiar).cs" Line="3" Column="42" />
-      <File FileName="Application/DTOs/FreezerOnOffResponse.cs" Line="7" Column="16" />
+      <File FileName="Infrastructure/Data/AppDbContext.cs" />
+      <File FileName="Application/Services/CustomerApplication.cs" />
+      <File FileName="Infrastructure/Repositories/CustomerRepository.cs" />
+      <File FileName="Application/Mappers/CustomerMap.cs" />
+      <File FileName="Application/DTOs/CustomersResponse.cs" />
+      <File FileName="Api/Properties/launchSettings.json" />
+      <File FileName="Api/appsettings.Development.json" />
+      <File FileName="Infrastructure/Data/AppDbContextFactory.cs" />
+      <File FileName="Infrastructure/Data/DbInitializer.cs" />
+      <File FileName="Infrastructure/DependencyInjectionInfra.cs" />
+      <File FileName="Api/Program.cs" />
+      <File FileName="Application/DependencyInjectionApplication.cs" />
+      <File FileName="Api/Controllers/CustomerController.cs" />
+      <File FileName="Api/Controllers/EquipamentController.cs" />
+      <File FileName="Application/Services/EquipamentApplication.cs" Line="83" Column="22" />
+      <File FileName="Application/Mappers/EquipamentMap.cs" />
+      <File FileName="Api/Controllers/TaskController.cs" />
+      <File FileName="Application/Interfaces/IHangFireApplication.cs" />
+      <File FileName="Application/DTOs/FreezerOnOffResponse.cs" />
+      <File FileName="Infrastructure/Repositories/TaskRepository.cs" />
+      <File FileName="Application/DTOs/EquipamentDeleteRequest.cs" />
+      <File FileName="Application/Services/TaskApplication.cs" />
+      <File FileName="Application/Interfaces/IEquipamentApplication.cs" />
+      <File FileName="Infrastructure/Repositories/EquipamentRepository.cs" />
+      <File FileName="Domain/Interfaces/IEquipamentRepository.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="automatic-freezer-manager-net8">
-            <Node name="Api" expanded="True">
+            <Node name="Api">
               <Node name="Controllers" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="appsettings.json" expanded="True" />
             </Node>
-            <Node name="Application" expanded="True">
-              <Node name="DTOs" expanded="True" />
-              <Node name="Interfaces" expanded="True" />
-              <Node name="Mappers" expanded="True" />
-              <Node name="Services" expanded="True" />
+            <Node name="Application">
+              <Node name="Services" expanded="True">
+                <Node name="EquipamentApplication.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="Domain" expanded="True">
+            <Node name="Domain">
               <Node name="Entities" expanded="True" />
             </Node>
-            <Node name="Infrastructure" expanded="True">
-              <Node name="Data" expanded="True" />
+            <Node name="Infrastructure">
+              <Node name="Data" expanded="True">
+                <Node name="EntityConfig" expanded="True" />
+              </Node>
               <Node name="Repositories" expanded="True" />
             </Node>
           </Node>
@@ -68,4 +61,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/aislanmiranda/Projects/automatic-energy/automatic-energy-manager/Application/Services/TaskApplication.cs" relfile="Application/Services/TaskApplication.cs" line="57" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>
