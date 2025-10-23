@@ -9,7 +9,7 @@ namespace Application.Mappers
 		public EquipamentMap()
 		{
             CreateMap<EquipamentCreateRequest, Equipament>()
-                .ForMember(dest => dest.OnOff, src => src.MapFrom(src => 1))
+                .ForMember(dest => dest.OnOff, src => src.MapFrom(src => 0))
                 .ForMember(dest => dest.Active, src => src.MapFrom(src => 1));
 
             CreateMap<EquipamentUpdateRequest, Equipament>();

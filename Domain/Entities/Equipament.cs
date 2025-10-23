@@ -13,5 +13,6 @@ public class Equipament
     public int OnOff { get; protected set; }
     public int Active { get; protected set; }
 
-    public List<ScheduleTask>? Tasks { get; protected set; }
+    public virtual List<ScheduleTask>? Tasks { get; protected set; }
+    public virtual List<Monitoring>? Monitorings { get; set; }
 }

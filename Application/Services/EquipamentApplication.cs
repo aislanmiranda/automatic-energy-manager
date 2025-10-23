@@ -4,6 +4,7 @@ using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System.Threading;
 
 namespace Application.Services;
 
@@ -11,16 +12,18 @@ public class EquipamentApplication : IEquipamentApplication
 {
     private readonly IEquipamentRepository _equipRepository;
     private readonly ITaskRepository _taskRepository;
+    private readonly IMonitoringRepository _monitoringRepository;
     private readonly IHangFireApplication _hangRepository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IMapper _mapper;
 
     public EquipamentApplication(IEquipamentRepository equipRepository, ITaskRepository taskRepository,
-        IHangFireApplication hangRepository, IHttpContextAccessor httpContextAccessor,
+        IMonitoringRepository monitoringRepository, IHangFireApplication hangRepository, IHttpContextAccessor httpContextAccessor,
         IMapper mapper)
     {
         _equipRepository = equipRepository;
         _taskRepository = taskRepository;
+        _monitoringRepository = monitoringRepository;
         _hangRepository = hangRepository;
         _httpContextAccessor = httpContextAccessor;
         _mapper = mapper;
@@ -100,11 +103,55 @@ public class EquipamentApplication : IEquipamentApplication
             var equipamentsDomain = await _equipRepository.GetAllByCustomerId(customerId, cancellationToken);
             var responseResult = _mapper.Map<IEnumerable<EquipamentResponse>>(equipamentsDomain);
 
+            //await CalculateTimerFreezer(customerId, cancellationToken);
+
             return Result<IEnumerable<EquipamentResponse>>.Ok(responseResult);
         }
         catch (Exception ex)
         {
             return Result<IEnumerable<EquipamentResponse>>.Fail("Erro listar equipamento");
         }
+    }
+
+    private async Task CalculateTimerFreezer(Guid customerId, CancellationToken cancellationToken)
+    {
+        var logs = await _monitoringRepository.GetMonitorings(
+            customerId,
+            new Guid("0199fed4-f6f7-7446-8586-5f3d8aa9d7ef"),
+            cancellationToken
+        );
+
+        // Ordena os logs por data
+        var orderedLogs = logs?.OrderBy(x => x.DateAction).ToList() ?? new List<Monitoring>();
+
+        TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+
+        TimeSpan totalTime = TimeSpan.Zero;
+        DateTime? lastOn = null;
+
+        foreach (var log in orderedLogs)
+        {
+            if (log.Action == "ON")
+            {
+                lastOn = log.DateAction;
+            }
+            else if (log.Action == "OFF" && lastOn.HasValue)
+            {
+                totalTime += (log.DateAction - lastOn.Value);
+                lastOn = null;
+            }
+        }
+
+        // Caso não tenha ocorrido o último OFF, considera o horário atual
+        if (lastOn.HasValue)
+        {
+            // Equipamento ainda está ligado
+            var now = TimeZoneInfo.ConvertTime(DateTime.Now, tz);
+            totalTime += (now - lastOn.Value);
+        }
+
+        string formattedTime = $"{(int)totalTime.TotalHours:00}:{totalTime.Minutes:00}:{totalTime.Seconds:00}";
+
+        Console.WriteLine($"Total ligado: {formattedTime}");
     }
 }

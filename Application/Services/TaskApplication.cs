@@ -49,9 +49,10 @@ public class TaskApplication : ITaskApplication
 
             foreach (var task in tasks)
             {
-                string CURRENT_JOB_ID = $"{DateTime.Now.ToString("ddMMyyyy:HHmmss")}_" +
-                $"{equipament.Queue}_{task.Action}-{equipament.Tag}_{task.TaskName}".ToUpper();
-                task.TaskJobId = CURRENT_JOB_ID;
+                //string CURRENT_JOB_ID = $"{DateTime.Now.ToString("ddMMyyyy:HHmmssfff")}_" +
+                //$"{equipament.Queue}_{task.Action}-{equipament.Tag}_{task.TaskName}".ToUpper();
+                task.TaskJobId = $"{Guid.NewGuid()}_{equipament.Queue}_{task.Action}";
+                task.TaskLegend = $"{equipament.Queue}_{task.Action}".ToUpper();
             }
 
             var TaskResponse = await _taskRepository.InsertOrUpdateRangeAsync(tasks, cancellationToken);
@@ -62,6 +63,8 @@ public class TaskApplication : ITaskApplication
             {
                 req.Queue = equipament.Queue;
                 req.Port = equipament.Port;
+                //req.CustomerId = Guid.Parse(sid!);
+                req.EquipamentId = equipId;
             }
 
             var results = await _hangRepository.SendProgramationAsync(sendTasks);
@@ -130,10 +133,9 @@ public class TaskApplication : ITaskApplication
             var result = await _hangRepository.SendFreezerOnOffAsync(
                 new FreezerOnOffRequest {
                     Queue = equipament.Queue,
-                    Message = new OnOffData {
-                        Action = request.Action,
-                        Port = equipament.Port
-                    }
+                    EquipamentId = equipament.Id,
+                    Action = request.Action,
+                    Port = equipament.Port        
                 });
 
             var state = await UpdateStateFreezer(equipament, request.Action, cancellationToken);

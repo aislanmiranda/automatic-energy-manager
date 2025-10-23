@@ -31,5 +31,6 @@ public static class DependencyInjectionInfra
         services.AddTransient<ICustomerRepository, CustomerRepository>();
         services.AddTransient<IEquipamentRepository, EquipamentRepository>();
         services.AddTransient<ITaskRepository, TaskRepository>();
+        services.AddTransient<IMonitoringRepository, MonitoringRepository>();
     }
 }

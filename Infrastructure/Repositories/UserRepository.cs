@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using System.Threading;
+﻿using System.Linq.Expressions;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
@@ -24,10 +22,8 @@ namespace Infrastructure.Repositories
             var existingEntity = await _context.Set<User>()
                 .FirstOrDefaultAsync(e => e.Id == user.Id);
 
-            if (existingEntity == null)
-                throw new KeyNotFoundException("Entity not found.");
-
-            return existingEntity.Id;
+            return existingEntity == null ?
+                throw new KeyNotFoundException("Entity not found.") : existingEntity.Id;
         }
 
         public async Task<User> AuthAsync(Expression<Func<User, bool>> filter, CancellationToken cancellationToken)

@@ -17,4 +17,5 @@ public class UpdateCustomerRequest
     public string? Neighborhood { get; set; }
     public string? Complement { get; set; }
     public string? ZipCode { get; set; }
+    public string Number { get; set; } = string.Empty;
 }

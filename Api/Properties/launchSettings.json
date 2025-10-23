@@ -38,7 +38,8 @@
         "DBNAME": "aes",
         "DBUSER": "automatic",
         "DBPASS": "jiBjHLoz2HzdQltOlkjC",
-        "HFHOST": "54.145.41.204",
+        "_HFHOST": "54.145.41.204",
+        "HFHOST": "localhost:8000",
         "HFHOSTSSL": "false"
       },
       "dotnetRunMessages": true

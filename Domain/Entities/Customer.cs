@@ -25,4 +25,5 @@ public class Customer
     public UserCustomer? UserCustomer { get; set; }
 
     public List<Equipament>? Equipaments { get; set; }
+    public List<Monitoring>? Monitorings { get; set; }
 }

@@ -67,7 +67,7 @@ public class CustomerApplication : ICustomerApplication
 
             return Result<UpdateCustomerResponse>.Ok(customerResponse);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             return Result<UpdateCustomerResponse>.Fail("Erro ao atualizar cliente");
         }

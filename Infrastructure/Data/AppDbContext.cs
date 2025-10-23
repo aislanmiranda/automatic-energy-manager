@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
-using Infrastructure.Data.EntityConfig;
 
 namespace Infrastructure.Data;
 
@@ -9,7 +8,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-    // dotnet ef migrations add UpdateFieldsCustomer --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
+    // dotnet ef migrations add AddMonitoringEquipament --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
     // dotnet ef database update --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
     // dotnet ef migrations remove --force --project ./Infrastructure/Infrastructure.csproj --startup-project ./Api/Api.csproj
 
@@ -18,6 +17,7 @@ public class AppDbContext : DbContext
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<Equipament> Equipaments => Set<Equipament>();
     public DbSet<ScheduleTask> Tasks => Set<ScheduleTask>();
+    public DbSet<Monitoring> Monitorings => Set<Monitoring>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

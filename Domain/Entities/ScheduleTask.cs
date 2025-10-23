@@ -5,7 +5,7 @@ public class ScheduleTask
 {
     public int Id { get; protected set; }
     public string? TaskName { get; protected set; }
-    public string TaskLegend { get; protected set; } = string.Empty;
+    public string TaskLegend { get; set; } = string.Empty;
 
     public string Action { get; protected set; } = string.Empty;
     public string Expression { get; protected set; } = string.Empty;
